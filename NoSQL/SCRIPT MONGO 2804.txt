@@ -1,0 +1,32 @@
+SCRIPT MONGO 28/04
+
+* Para ver si existen bases de datos: 
+show dbs 
+
+* Crear y habilitar base de datos: 
+use NombreBaseDatos
+
+* Crear colecciones: 
+db.createCollection("NombreColeccion")
+
+{ ok: 1 }: Valor exitoso
+
+* Agregar un documento: 
+db.Productos.insertOne({nombre:"Laptop", precio:22000, cantidad:10})
+
+Al ser una base no relacional los documentos son registros 
+json: objetos {propiedad: valor}
+
+Varios documentos: Listas de json
+
+* Ver documentos creados: 
+find (es un metodo) 
+
+
+COMANDOS PARA OPERADORES (Taller)
+- Consulta para un producto que tenga un valor especifico: db.Productos.find({precio:{$gt:10}})
+
+TAREA: Crear una colección clientes y ventas (mínimo 5 documentos en cada una SOLO CONSULTA Y USAR TODOS LOS OPERADORES)
+
+
+Código hoy: 
