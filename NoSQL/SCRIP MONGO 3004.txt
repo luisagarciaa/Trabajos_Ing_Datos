@@ -1,0 +1,746 @@
+SCRIP MONGO 3004
+show collections
+use Tienda
+switched to db Tienda
+show collections
+cliente
+productos
+venta
+db.venta.find()
+db.venta.find()
+db.venta.insertMany([{fecha_venta: new Date("2023-05-16")},{cantidad:1},{producto: "Teclados"},{precio_unidad: 100000},{precio_total:100000}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('68126aef1e75d6a32c00ec89'),
+    '1': ObjectId('68126aef1e75d6a32c00ec8a'),
+    '2': ObjectId('68126aef1e75d6a32c00ec8b'),
+    '3': ObjectId('68126aef1e75d6a32c00ec8c'),
+    '4': ObjectId('68126aef1e75d6a32c00ec8d')
+  }
+}
+db.venta.find()
+{
+  _id: ObjectId('68126aef1e75d6a32c00ec89'),
+  fecha_venta: 2023-05-16T00:00:00.000Z
+}
+{
+  _id: ObjectId('68126aef1e75d6a32c00ec8a'),
+  cantidad: 1
+}
+{
+  _id: ObjectId('68126aef1e75d6a32c00ec8b'),
+  producto: 'Teclados'
+}
+{
+  _id: ObjectId('68126aef1e75d6a32c00ec8c'),
+  precio_unidad: 100000
+}
+{
+  _id: ObjectId('68126aef1e75d6a32c00ec8d'),
+  precio_total: 100000
+}
+db.cliente.find()
+{
+  _id: ObjectId('6811302cd92d96c77b4877b2'),
+  nombre: 'julga',
+  id: 12345,
+  cantidad_compra: 11
+}
+{
+  _id: ObjectId('6811302cd92d96c77b4877b3'),
+  nombre: 'silvana',
+  id: 54321,
+  cantidad_compra: 2
+}
+{
+  _id: ObjectId('6811302cd92d96c77b4877b4'),
+  nombre: 'alejo',
+  id: 45678,
+  cantidad_compra: 87
+}
+{
+  _id: ObjectId('6811302cd92d96c77b4877b5'),
+  nombre: 'nata',
+  id: 87654,
+  cantidad_compra: 5
+}
+{
+  _id: ObjectId('6811302cd92d96c77b4877b6'),
+  nombre: 'troy',
+  id: 11111,
+  cantidad_compra: 20
+}
+db.productos.find()
+{
+  _id: ObjectId('68112195575cb70b9ca9e4b0'),
+  nombre: 'Laptop',
+  precio: 120,
+  cantidad: 10
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b1'),
+  nombre: 'mouse',
+  precio: 60,
+  cantidad: 150
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b2'),
+  nombre: 'teclados',
+  precio: 100,
+  cantidad: 70
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b3'),
+  nombre: 'USB',
+  precio: 11,
+  cantidad: 5
+}
+//modificar
+db.productos.updateOne([{nombre:"laptop"},{$set:{precio:$5000000}}])
+ReferenceError: $5000000 is not defined
+db.productos.updateOne([{nombre:"laptop"},{$set:{precio:$5000000}})
+SyntaxError: Unexpected token, expected "," (1:66)
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39mproductos[33m.[39mupdateOne([{nombre[33m:[39m[32m"laptop"[39m}[33m,[39m{$set[33m:[39m{precio[33m:[39m$5000000}})
+ [90m   |[39m                                                                   [31m[1m^[22m[39m[0m
+db.productos.updateOne([{nombre:"laptop"},{$set:{precio:5000000}}])
+MongoInvalidArgumentError: Update document requires atomic operators
+db.productos.updateOne([{nombre:"laptop"},{$set:{precio:5000000}}])
+MongoInvalidArgumentError: Update document requires atomic operators
+db.productos.updateOne([{nombre:"Laptop"},{$set:{precio:5000000}}])
+MongoInvalidArgumentError: Update document requires atomic operators
+db.productos.updateOne([{nombre:"Laptop"},{$set:{precio:5000000}}])
+MongoInvalidArgumentError: Update document requires atomic operators
+db.productos.updateOne({nombre:"Laptop"},{$set:{precio:5000000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.productos.updateMany({precio:{$lt:100000}},{$set:{enOferta:true}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+db.productos.find()
+{
+  _id: ObjectId('68112195575cb70b9ca9e4b0'),
+  nombre: 'Laptop',
+  precio: 5000000,
+  cantidad: 10
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b1'),
+  nombre: 'mouse',
+  precio: 60,
+  cantidad: 150,
+  enOferta: true
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b2'),
+  nombre: 'teclados',
+  precio: 100,
+  cantidad: 70,
+  enOferta: true
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b3'),
+  nombre: 'USB',
+  precio: 11,
+  cantidad: 5,
+  enOferta: true
+}
+db.productos.deleteOne({precio:{$eq:60}})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.productos.deleteOne({nombre:"Laptop"},{precio:5000000}})
+SyntaxError: Unexpected token, expected "," (1:57)
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39mproductos[33m.[39mdeleteOne({nombre[33m:[39m[32m"Laptop"[39m}[33m,[39m{precio[33m:[39m[35m5000000[39m}})
+ [90m   |[39m                                                          [31m[1m^[22m[39m[0m
+db.productos.deleteOne({nombre:"Laptop"},{precio:5000000})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.productos.deleteOne([{$and{nombre:"USB"},{precio:11}}])
+SyntaxError: Unexpected token, expected "," (1:29)
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39mproductos[33m.[39mdeleteOne([{$and{nombre[33m:[39m[32m"USB"[39m}[33m,[39m{precio[33m:[39m[35m11[39m}}])
+ [90m   |[39m                              [31m[1m^[22m[39m[0m
+db.productos.deleteOne([{$and:{nombre:"USB"},{precio:11}}])
+SyntaxError: Unexpected token (1:45)
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39mproductos[33m.[39mdeleteOne([{$and[33m:[39m{nombre[33m:[39m[32m"USB"[39m}[33m,[39m{precio[33m:[39m[35m11[39m}}])
+ [90m   |[39m                                              [31m[1m^[22m[39m
+ [90m 2 |[39m[0m
+db.productos.deleteOne({$and:[{nombre:"USB"},{precio:11}]})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+Tienda
+Selection deleted
+
+show collections
+use Tienda
+switched to db Tienda
+show collections
+cliente
+productos
+venta
+db.venta.find()
+db.venta.find()
+db.venta.insertMany([{fecha_venta: new Date("2023-05-16")},{cantidad:1},{producto: "Teclados"},{precio_unidad: 100000},{precio_total:100000}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('68126aef1e75d6a32c00ec89'),
+    '1': ObjectId('68126aef1e75d6a32c00ec8a'),
+    '2': ObjectId('68126aef1e75d6a32c00ec8b'),
+    '3': ObjectId('68126aef1e75d6a32c00ec8c'),
+    '4': ObjectId('68126aef1e75d6a32c00ec8d')
+  }
+}
+db.venta.find()
+{
+  _id: ObjectId('68126aef1e75d6a32c00ec89'),
+  fecha_venta: 2023-05-16T00:00:00.000Z
+}
+{
+  _id: ObjectId('68126aef1e75d6a32c00ec8a'),
+  cantidad: 1
+}
+{
+  _id: ObjectId('68126aef1e75d6a32c00ec8b'),
+  producto: 'Teclados'
+}
+{
+  _id: ObjectId('68126aef1e75d6a32c00ec8c'),
+  precio_unidad: 100000
+}
+{
+  _id: ObjectId('68126aef1e75d6a32c00ec8d'),
+  precio_total: 100000
+}
+db.cliente.find()
+{
+  _id: ObjectId('6811302cd92d96c77b4877b2'),
+  nombre: 'julga',
+  id: 12345,
+  cantidad_compra: 11
+}
+{
+  _id: ObjectId('6811302cd92d96c77b4877b3'),
+  nombre: 'silvana',
+  id: 54321,
+  cantidad_compra: 2
+}
+{
+  _id: ObjectId('6811302cd92d96c77b4877b4'),
+  nombre: 'alejo',
+  id: 45678,
+  cantidad_compra: 87
+}
+{
+  _id: ObjectId('6811302cd92d96c77b4877b5'),
+  nombre: 'nata',
+  id: 87654,
+  cantidad_compra: 5
+}
+{
+  _id: ObjectId('6811302cd92d96c77b4877b6'),
+  nombre: 'troy',
+  id: 11111,
+  cantidad_compra: 20
+}
+db.productos.find()
+{
+  _id: ObjectId('68112195575cb70b9ca9e4b0'),
+  nombre: 'Laptop',
+  precio: 120,
+  cantidad: 10
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b1'),
+  nombre: 'mouse',
+  precio: 60,
+  cantidad: 150
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b2'),
+  nombre: 'teclados',
+  precio: 100,
+  cantidad: 70
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b3'),
+  nombre: 'USB',
+  precio: 11,
+  cantidad: 5
+}
+//modificar
+db.productos.updateOne([{nombre:"laptop"},{$set:{precio:$5000000}}])
+ReferenceError: $5000000 is not defined
+db.productos.updateOne([{nombre:"laptop"},{$set:{precio:$5000000}})
+SyntaxError: Unexpected token, expected "," (1:66)
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39mproductos[33m.[39mupdateOne([{nombre[33m:[39m[32m"laptop"[39m}[33m,[39m{$set[33m:[39m{precio[33m:[39m$5000000}})
+ [90m   |[39m                                                                   [31m[1m^[22m[39m[0m
+db.productos.updateOne([{nombre:"laptop"},{$set:{precio:5000000}}])
+MongoInvalidArgumentError: Update document requires atomic operators
+db.productos.updateOne([{nombre:"laptop"},{$set:{precio:5000000}}])
+MongoInvalidArgumentError: Update document requires atomic operators
+db.productos.updateOne([{nombre:"Laptop"},{$set:{precio:5000000}}])
+MongoInvalidArgumentError: Update document requires atomic operators
+db.productos.updateOne([{nombre:"Laptop"},{$set:{precio:5000000}}])
+MongoInvalidArgumentError: Update document requires atomic operators
+db.productos.updateOne({nombre:"Laptop"},{$set:{precio:5000000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.productos.updateMany({precio:{$lt:100000}},{$set:{enOferta:true}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+db.productos.find()
+{
+  _id: ObjectId('68112195575cb70b9ca9e4b0'),
+  nombre: 'Laptop',
+  precio: 5000000,
+  cantidad: 10
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b1'),
+  nombre: 'mouse',
+  precio: 60,
+  cantidad: 150,
+  enOferta: true
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b2'),
+  nombre: 'teclados',
+  precio: 100,
+  cantidad: 70,
+  enOferta: true
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b3'),
+  nombre: 'USB',
+  precio: 11,
+  cantidad: 5,
+  enOferta: true
+}
+db.productos.deleteOne({precio:{$eq:60}})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.productos.deleteOne({nombre:"Laptop"},{precio:5000000}})
+SyntaxError: Unexpected token, expected "," (1:57)
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39mproductos[33m.[39mdeleteOne({nombre[33m:[39m[32m"Laptop"[39m}[33m,[39m{precio[33m:[39m[35m5000000[39m}})
+ [90m   |[39m                                                          [31m[1m^[22m[39m[0m
+db.productos.deleteOne({nombre:"Laptop"},{precio:5000000})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.productos.deleteOne([{$and{nombre:"USB"},{precio:11}}])
+SyntaxError: Unexpected token, expected "," (1:29)
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39mproductos[33m.[39mdeleteOne([{$and{nombre[33m:[39m[32m"USB"[39m}[33m,[39m{precio[33m:[39m[35m11[39m}}])
+ [90m   |[39m                              [31m[1m^[22m[39m[0m
+db.productos.deleteOne([{$and:{nombre:"USB"},{precio:11}}])
+SyntaxError: Unexpected token (1:45)
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39mproductos[33m.[39mdeleteOne([{$and[33m:[39m{nombre[33m:[39m[32m"USB"[39m}[33m,[39m{precio[33m:[39m[35m11[39m}}])
+ [90m   |[39m                                              [31m[1m^[22m[39m
+ [90m 2 |[39m[0m
+db.productos.deleteOne({$and:[{nombre:"USB"},{precio:11}]})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+Tienda
+Selection deleted
+show collections
+use Tienda
+switched to db Tienda
+show collections
+cliente
+productos
+venta
+db.venta.find()
+db.venta.find()
+db.venta.insertMany([{fecha_venta: new Date("2023-05-16")},{cantidad:1},{producto: "Teclados"},{precio_unidad: 100000},{precio_total:100000}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('68126aef1e75d6a32c00ec89'),
+    '1': ObjectId('68126aef1e75d6a32c00ec8a'),
+    '2': ObjectId('68126aef1e75d6a32c00ec8b'),
+    '3': ObjectId('68126aef1e75d6a32c00ec8c'),
+    '4': ObjectId('68126aef1e75d6a32c00ec8d')
+  }
+}
+db.venta.find()
+{
+  _id: ObjectId('68126aef1e75d6a32c00ec89'),
+  fecha_venta: 2023-05-16T00:00:00.000Z
+}
+{
+  _id: ObjectId('68126aef1e75d6a32c00ec8a'),
+  cantidad: 1
+}
+{
+  _id: ObjectId('68126aef1e75d6a32c00ec8b'),
+  producto: 'Teclados'
+}
+{
+  _id: ObjectId('68126aef1e75d6a32c00ec8c'),
+  precio_unidad: 100000
+}
+{
+  _id: ObjectId('68126aef1e75d6a32c00ec8d'),
+  precio_total: 100000
+}
+db.cliente.find()
+{
+  _id: ObjectId('6811302cd92d96c77b4877b2'),
+  nombre: 'julga',
+  id: 12345,
+  cantidad_compra: 11
+}
+{
+  _id: ObjectId('6811302cd92d96c77b4877b3'),
+  nombre: 'silvana',
+  id: 54321,
+  cantidad_compra: 2
+}
+{
+  _id: ObjectId('6811302cd92d96c77b4877b4'),
+  nombre: 'alejo',
+  id: 45678,
+  cantidad_compra: 87
+}
+{
+  _id: ObjectId('6811302cd92d96c77b4877b5'),
+  nombre: 'nata',
+  id: 87654,
+  cantidad_compra: 5
+}
+{
+  _id: ObjectId('6811302cd92d96c77b4877b6'),
+  nombre: 'troy',
+  id: 11111,
+  cantidad_compra: 20
+}
+db.productos.find()
+{
+  _id: ObjectId('68112195575cb70b9ca9e4b0'),
+  nombre: 'Laptop',
+  precio: 120,
+  cantidad: 10
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b1'),
+  nombre: 'mouse',
+  precio: 60,
+  cantidad: 150
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b2'),
+  nombre: 'teclados',
+  precio: 100,
+  cantidad: 70
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b3'),
+  nombre: 'USB',
+  precio: 11,
+  cantidad: 5
+}
+//modificar
+db.productos.updateOne([{nombre:"laptop"},{$set:{precio:$5000000}}])
+ReferenceError: $5000000 is not defined
+db.productos.updateOne([{nombre:"laptop"},{$set:{precio:$5000000}})
+SyntaxError: Unexpected token, expected "," (1:66)
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39mproductos[33m.[39mupdateOne([{nombre[33m:[39m[32m"laptop"[39m}[33m,[39m{$set[33m:[39m{precio[33m:[39m$5000000}})
+ [90m   |[39m                                                                   [31m[1m^[22m[39m[0m
+db.productos.updateOne([{nombre:"laptop"},{$set:{precio:5000000}}])
+MongoInvalidArgumentError: Update document requires atomic operators
+db.productos.updateOne([{nombre:"laptop"},{$set:{precio:5000000}}])
+MongoInvalidArgumentError: Update document requires atomic operators
+db.productos.updateOne([{nombre:"Laptop"},{$set:{precio:5000000}}])
+MongoInvalidArgumentError: Update document requires atomic operators
+db.productos.updateOne([{nombre:"Laptop"},{$set:{precio:5000000}}])
+MongoInvalidArgumentError: Update document requires atomic operators
+db.productos.updateOne({nombre:"Laptop"},{$set:{precio:5000000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.productos.updateMany({precio:{$lt:100000}},{$set:{enOferta:true}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+db.productos.find()
+{
+  _id: ObjectId('68112195575cb70b9ca9e4b0'),
+  nombre: 'Laptop',
+  precio: 5000000,
+  cantidad: 10
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b1'),
+  nombre: 'mouse',
+  precio: 60,
+  cantidad: 150,
+  enOferta: true
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b2'),
+  nombre: 'teclados',
+  precio: 100,
+  cantidad: 70,
+  enOferta: true
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b3'),
+  nombre: 'USB',
+  precio: 11,
+  cantidad: 5,
+  enOferta: true
+}
+db.productos.deleteOne({precio:{$eq:60}})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+
+db.productos.deleteOne({$and:[{nombre:"USB"},{precio:11}]})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+Tienda
+Selection deleted
+
+show collections
+use Tienda
+switched to db Tienda
+show collections
+cliente
+productos
+venta
+db.venta.find()
+db.venta.find()
+db.venta.insertMany([{fecha_venta: new Date("2023-05-16")},{cantidad:1},{producto: "Teclados"},{precio_unidad: 100000},{precio_total:100000}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('68126aef1e75d6a32c00ec89'),
+    '1': ObjectId('68126aef1e75d6a32c00ec8a'),
+    '2': ObjectId('68126aef1e75d6a32c00ec8b'),
+    '3': ObjectId('68126aef1e75d6a32c00ec8c'),
+    '4': ObjectId('68126aef1e75d6a32c00ec8d')
+  }
+}
+db.venta.find()
+{
+  _id: ObjectId('68126aef1e75d6a32c00ec89'),
+  fecha_venta: 2023-05-16T00:00:00.000Z
+}
+{
+  _id: ObjectId('68126aef1e75d6a32c00ec8a'),
+  cantidad: 1
+}
+{
+  _id: ObjectId('68126aef1e75d6a32c00ec8b'),
+  producto: 'Teclados'
+}
+{
+  _id: ObjectId('68126aef1e75d6a32c00ec8c'),
+  precio_unidad: 100000
+}
+{
+  _id: ObjectId('68126aef1e75d6a32c00ec8d'),
+  precio_total: 100000
+}
+db.cliente.find()
+{
+  _id: ObjectId('6811302cd92d96c77b4877b2'),
+  nombre: 'julga',
+  id: 12345,
+  cantidad_compra: 11
+}
+{
+  _id: ObjectId('6811302cd92d96c77b4877b3'),
+  nombre: 'silvana',
+  id: 54321,
+  cantidad_compra: 2
+}
+{
+  _id: ObjectId('6811302cd92d96c77b4877b4'),
+  nombre: 'alejo',
+  id: 45678,
+  cantidad_compra: 87
+}
+{
+  _id: ObjectId('6811302cd92d96c77b4877b5'),
+  nombre: 'nata',
+  id: 87654,
+  cantidad_compra: 5
+}
+{
+  _id: ObjectId('6811302cd92d96c77b4877b6'),
+  nombre: 'troy',
+  id: 11111,
+  cantidad_compra: 20
+}
+db.productos.find()
+{
+  _id: ObjectId('68112195575cb70b9ca9e4b0'),
+  nombre: 'Laptop',
+  precio: 120,
+  cantidad: 10
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b1'),
+  nombre: 'mouse',
+  precio: 60,
+  cantidad: 150
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b2'),
+  nombre: 'teclados',
+  precio: 100,
+  cantidad: 70
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b3'),
+  nombre: 'USB',
+  precio: 11,
+  cantidad: 5
+}
+//modificar
+db.productos.updateOne([{nombre:"laptop"},{$set:{precio:$5000000}}])
+ReferenceError: $5000000 is not defined
+db.productos.updateOne([{nombre:"laptop"},{$set:{precio:$5000000}})
+SyntaxError: Unexpected token, expected "," (1:66)
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39mproductos[33m.[39mupdateOne([{nombre[33m:[39m[32m"laptop"[39m}[33m,[39m{$set[33m:[39m{precio[33m:[39m$5000000}})
+ [90m   |[39m                                                                   [31m[1m^[22m[39m[0m
+db.productos.updateOne([{nombre:"laptop"},{$set:{precio:5000000}}])
+MongoInvalidArgumentError: Update document requires atomic operators
+db.productos.updateOne([{nombre:"laptop"},{$set:{precio:5000000}}])
+MongoInvalidArgumentError: Update document requires atomic operators
+db.productos.updateOne([{nombre:"Laptop"},{$set:{precio:5000000}}])
+MongoInvalidArgumentError: Update document requires atomic operators
+db.productos.updateOne([{nombre:"Laptop"},{$set:{precio:5000000}}])
+MongoInvalidArgumentError: Update document requires atomic operators
+db.productos.updateOne({nombre:"Laptop"},{$set:{precio:5000000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.productos.updateMany({precio:{$lt:100000}},{$set:{enOferta:true}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+db.productos.find()
+{
+  _id: ObjectId('68112195575cb70b9ca9e4b0'),
+  nombre: 'Laptop',
+  precio: 5000000,
+  cantidad: 10
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b1'),
+  nombre: 'mouse',
+  precio: 60,
+  cantidad: 150,
+  enOferta: true
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b2'),
+  nombre: 'teclados',
+  precio: 100,
+  cantidad: 70,
+  enOferta: true
+}
+{
+  _id: ObjectId('681123e9575cb70b9ca9e4b3'),
+  nombre: 'USB',
+  precio: 11,
+  cantidad: 5,
+  enOferta: true
+}
+db.productos.deleteOne({precio:{$eq:60}})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.productos.deleteOne({nombre:"Laptop"},{precio:5000000}})
+SyntaxError: Unexpected token, expected "," (1:57)
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39mproductos[33m.[39mdeleteOne({nombre[33m:[39m[32m"Laptop"[39m}[33m,[39m{precio[33m:[39m[35m5000000[39m}})
+ [90m   |[39m                                                          [31m[1m^[22m[39m[0m
+db.productos.deleteOne({nombre:"Laptop"},{precio:5000000})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.productos.deleteOne([{$and{nombre:"USB"},{precio:11}}])
+SyntaxError: Unexpected token, expected "," (1:29)
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39mproductos[33m.[39mdeleteOne([{$and{nombre[33m:[39m[32m"USB"[39m}[33m,[39m{precio[33m:[39m[35m11[39m}}])
+ [90m   |[39m                              [31m[1m^[22m[39m[0m
+db.productos.deleteOne([{$and:{nombre:"USB"},{precio:11}}])
+SyntaxError: Unexpected token (1:45)
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39mproductos[33m.[39mdeleteOne([{$and[33m:[39m{nombre[33m:[39m[32m"USB"[39m}[33m,[39m{precio[33m:[39m[35m11[39m}}])
+ [90m   |[39m                                              [31m[1m^[22m[39m
+ [90m 2 |[39m[0m
+db.productos.deleteOne({$and:[{nombre:"USB"},{precio:11}]})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+Tienda
+
+db.ventas.aggregate([{$lookup:{from:"productos", localfield:"producto_id", foreignField:"_id", as:"Producto"}},{$lookup:{}}])
+
+TAREA: crear una base de satos llamada "Colegio" y foto
