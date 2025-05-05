@@ -1,0 +1,61 @@
+TAREA 
+
+-> Creacion base de datos "COLEGIO" y colecciones "alumnos", "calificaciones", "curso", "materia"
+use COLEGIO
+
+db.createCollection("alumnos")
+
+db.createCollection("materia")
+
+db.createCollection("curso")
+
+db.createCollection("calificaciones")
+
+
+db.alumnos.insertMany([{id_alumno: 1,nombre:"luisa", edad: 18, correo: "lmgr@colegio.com"}, 
+                      {id_alumno: 2, nombre: "alejo" , edad: 18 , correo:"aa@colegio.com"},
+                      {id_alumno : 3, nombre: "nata" , edad: 18 , correo: "nt21@colegio.com"},
+                      {id_alumno : 4, nombre: "simon" , edad: 19 , correo:"sm@colegio.com"},
+                      {id_alumno : 5, nombre: "polly" , edad: 21 , correo: "pl@colegio.com"},
+                      {id_alumno: 6, nombre: "katha" , edad: 16  , correo: "kth@colegio.com"},
+                      {id_alumno: 7, nombre: "val" , edad: 17 , correo:"v@colegio.com"}])
+
+db.materia.insertMany([{id_materia: 1 , nombre : "matematicas", creditos: 3 },
+                       {id_materia: 2 , nombre : "ingles", creditos: 3},
+                       {id_materia: 3 , nombre : "ingenieria", creditos: 3},
+                       {id_materia: 4 , nombre : "deportes", creditos: 1},
+                       {id_materia: 5 , nombre : "fisica", creditos: 2},
+                       {id_materia: 6 , nombre : "quimica", creditos: 3},
+                       {id_materia: 7 , nombre : "lenguaC", creditos: 2},
+                       {id_materia: 8 , nombre : "biologia", creditos: 2}])
+
+db.calificaciones.insertMany([{id_alumno : 1, id_materia :  1,  id_curso  :  1 , calificacion  : "sobresaliente"},
+                              {id_alumno : 2, id_materia :  6,  id_curso  :  2 , calificacion  : "excelente"},
+                              {id_alumno : 3, id_materia :  2,  id_curso  :  1 , calificacion  : "excelente"},
+                              {id_alumno : 4, id_materia :  3,  id_curso  :  2 , calificacion  : "excelente"},
+                              {id_alumno : 5, id_materia :  5,  id_curso  :  1 , calificacion  : "regular"},
+                              {id_alumno : 6, id_materia :  9,  id_curso  :  2 , calificacion  : "regular"},
+                              {id_alumno : 7, id_materia :  8,  id_curso  :  1 , calificacion  : "bajo"}])
+
+db.curso.insertMany([{id_curso : 1 , curso : "1101"},
+                     {id_curso : 2 , curso : "1102"},])
+
+
+
+-> Conexiones base de datos "Tienda"
+
+db.producto.insertMany([{idProducto:1,nombre:"mouse",precio:60,cantidad:12},
+{idProducto:2,nombre:"teclado",precio:100,cantidad:7},
+{idProducto:3,nombre:"USB",precio:11,cantidad:4}])
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+db.cliente.insertMany([{idCliente:1, Nombre:"julga",Documento:12345,Cantidad_compra:11},
+{idCliente:2,Nombre:"silvana",Documento:54321,Cantidad_compra:2},
+{idCliente:3,Nombre:"alejo",Documento:45678,Cantidad_compra:87},
+{idCliente:4,Nombre:"nata",Documento:87654,Cantidad_compra:5},
+{idCliente:5,Nombre:"troy",Documento:11111,Cantidad_compra:20}])   
+
+db.venta.insertMany([{idVenta: 1,idCliente: 4,idProducto: 2,cantidad: 11,fecha: new Date("05-05-2025")},
+{idVenta: 2,idCliente: 1,idProducto: 1,cantidad: 3,fecha: new Date("03-04-2025")},
+{idVenta: 3,idCliente: 5,idProducto: 3,cantidad: 2,fecha: new Date("01-01-2025")}])
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+                                                                                                                                                                                                                                                                                                                   
