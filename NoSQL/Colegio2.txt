@@ -1,0 +1,231 @@
+Colegio2
+
+NOTAS 
+[{
+  "_id": {
+    "$oid": "681b7fdcfe65f0071f55a7ee"
+  },
+  "id_estudiante": 1,
+  "id_asignatura": 1,
+  "id_grado": 1,
+  "nota": "sobresaliente"
+},
+{
+  "_id": {
+    "$oid": "681b7fdcfe65f0071f55a7ef"
+  },
+  "id_estudiante": 2,
+  "id_asignatura": 6,
+  "id_grado": 2,
+  "nota": "excelente"
+},
+{
+  "_id": {
+    "$oid": "681b7fdcfe65f0071f55a7f0"
+  },
+  "id_estudiante": 3,
+  "id_asignatura": 2,
+  "id_grado": 1,
+  "nota": "excelente"
+},
+{
+  "_id": {
+    "$oid": "681b7fdcfe65f0071f55a7f1"
+  },
+  "id_estudiante": 4,
+  "id_asignatura": 3,
+  "id_grado": 2,
+  "nota": "excelente"
+},
+{
+  "_id": {
+    "$oid": "681b7fdcfe65f0071f55a7f2"
+  },
+  "id_estudiante": 5,
+  "id_asignatura": 5,
+  "id_grado": 1,
+  "nota": "regular"
+},
+{
+  "_id": {
+    "$oid": "681b7fdcfe65f0071f55a7f3"
+  },
+  "id_estudiante": 6,
+  "id_asignatura": 9,
+  "id_grado": 2,
+  "nota": "regular"
+},
+{
+  "_id": {
+    "$oid": "681b7fdcfe65f0071f55a7f4"
+  },
+  "id_estudiante": 7,
+  "id_asignatura": 8,
+  "id_grado": 1,
+  "nota": "bajo    "
+}]
+
+
+GRADO 
+[{
+  "_id": {
+    "$oid": "681b7fd2fe65f0071f55a7eb"
+  },
+  "id_grado": 1,
+  "grado ": 1101
+},
+{
+  "_id": {
+    "$oid": "681b7fd2fe65f0071f55a7ec"
+  },
+  "id_grado": 2,
+  "grado ": 1102
+}]
+
+ESTUDIANTES
+[{
+  "_id": {
+    "$oid": "681b7fc6fe65f0071f55a7e0"
+  },
+  "id_estudiante": 1,
+  "nombre": "luisa",
+  "edad": 18,
+  "correo": "lmgr@colegio.com"
+},
+{
+  "_id": {
+    "$oid": "681b7fc6fe65f0071f55a7e1"
+  },
+  "id_estudiante": 2,
+  "nombre": "alejo",
+  "edad": 18,
+  "correo": "aa@colegio.com"
+},
+{
+  "_id": {
+    "$oid": "681b7fc6fe65f0071f55a7e2"
+  },
+  "id_estudiante": 3,
+  "nombre": "nata",
+  "edad": 18,
+  "correo": "nt21@colegio.com"
+},
+{
+  "_id": {
+    "$oid": "681b7fc6fe65f0071f55a7e3"
+  },
+  "id_estudiante": 4,
+  "nombre": "simon",
+  "edad": 19,
+  "correo": "sm@colegio.com"
+},
+{
+  "_id": {
+    "$oid": "681b7fc6fe65f0071f55a7e4"
+  },
+  "id_estudiante": 5,
+  "nombre": "polly",
+  "edad": 21,
+  "correo": "pl@colegio.com"
+},
+{
+  "_id": {
+    "$oid": "681b7fc6fe65f0071f55a7e5"
+  },
+  "id_estudiante": 6,
+  "nombre": "katha",
+  "edad": 16,
+  "correo": "kth@colegio.com"
+},
+{
+  "_id": {
+    "$oid": "681b7fc6fe65f0071f55a7e6"
+  },
+  "id_estudiante": 7,
+  "nombre": "val",
+  "edad": 17,
+  "correo": "v@colegio.com"
+},
+{
+  "_id": {
+    "$oid": "681b7fc6fe65f0071f55a7e7"
+  }
+},
+{
+  "_id": {
+    "$oid": "681b7fc6fe65f0071f55a7e8"
+  }
+},
+{
+  "_id": {
+    "$oid": "681b7fc6fe65f0071f55a7e9"
+  },
+  "id_estudiante": "   "
+}]
+
+
+ASIGNATURA
+[{
+  "_id": {
+    "$oid": "681b7fabfe65f0071f55a7d7"
+  },
+  "id_asignatura": 1,
+  "nombre": "matematicas",
+  "creditos": 3
+},
+{
+  "_id": {
+    "$oid": "681b7fabfe65f0071f55a7d8"
+  },
+  "id_asignatura": 2,
+  "nombre": "ingles",
+  "creditos": 3
+},
+{
+  "_id": {
+    "$oid": "681b7fabfe65f0071f55a7d9"
+  },
+  "id_asignatura": 3,
+  "nombre": "ingenieria",
+  "creditos": 3
+},
+{
+  "_id": {
+    "$oid": "681b7fabfe65f0071f55a7da"
+  },
+  "id_asignatura": 4,
+  "nombre": "deportes",
+  "creditos": 1
+},
+{
+  "_id": {
+    "$oid": "681b7fabfe65f0071f55a7db"
+  },
+  "id_asignatura": 5,
+  "nombre": "fisica",
+  "creditos": 2
+},
+{
+  "_id": {
+    "$oid": "681b7fabfe65f0071f55a7dc"
+  },
+  "id_asignatura": 6,
+  "nombre": "quimica",
+  "creditos": 3
+},
+{
+  "_id": {
+    "$oid": "681b7fabfe65f0071f55a7dd"
+  },
+  "id_asignatura": 7,
+  "nombre": "lenguaC",
+  "creditos": 2
+},
+{
+  "_id": {
+    "$oid": "681b7fabfe65f0071f55a7de"
+  },
+  "id_asignatura": 8,
+  "nombre": "biologia",
+  "creditos": 2
+}]
