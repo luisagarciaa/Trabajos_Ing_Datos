@@ -41,4 +41,33 @@ describe Cargo_Empleados;
 insert into Cargo_Empleados values(5656,"Secretario"),
 (4141,"Lider"),(0202,"Administrador"),(1111,"Gerente"); 
 
-/*CONSULTAS*/
+/*TALLER*/
+/* 1.   Lista de empleados: Obtén los nombres, edades y salarios de todos los empleados de TechCorp.*/
+select nombreEmpleado,edadEmpleado,salarioEmpleado from Empleados;
+
+/*2. Altos ingresos: ¿Quiénes son los empleados que ganan más de $4,000?*/
+select nombreEmpleado,idEmpleado,salarioEmpleado from Empleados where salarioEmpleado > "4000.00";
+
+/*3. Fuerza de ventas: Extrae la lista de empleados que trabajan en el departamento de Ventas.*/
+select nombreEmpleado,idEmpleado,idCargoFK from Empleados where idCargoFK = 5503;
+
+/* 4. Rango de edad: Encuentra a los empleados que tienen entre 30 y 40 años. */
+select nombreEmpleado,idEmpleado,edadEmpleado from Empleados where edadEmpleado >= "30" and edadEmpleado <= "40";
+
+/* 5. Nuevas contrataciones: ¿Quiénes han sido contratados después del año 2020? */
+select nombreEmpleado,idEmpleado,fecha_ingresoEmpleado from Empleados where fecha_ingresoEmpleado >= "01/01/2020";
+
+/* 6. Distribución de empleados: ¿Cuántos empleados hay en cada departamento? */
+select nombreEmpleado,idEmpleado,id ;
+
+/* 7. Análisis salarial: ¿Cuál es el salario promedio en la empresa? */
+select AVG(salarioEmpleado) as "Salario promedio" from Empleados;
+
+/* 8. Nombres selectivos: Muestra los empleados cuyos nombres comienzan con "A" o "C"*/
+select 
+
+/* 9. Departamentos específicos: Encuentra a los empleados que no pertenecen al departamento de IT. */
+
+
+/* 10. El mejor pagado: ¿Quién es el empleado con el salario más alto?*/
+
