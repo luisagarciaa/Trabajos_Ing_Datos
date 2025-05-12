@@ -21,6 +21,7 @@ salarioEmpleado float not null,
 fecha_ingresoEmpleado date not null, 
 idCargoFK int,
 idDepartamentoFK int,
+
 FOREIGN KEY (idCargoFK) REFERENCES Cargo_Empleados (idCargo) on delete cascade on update cascade, 
 FOREIGN KEY (idDepartamentoFK) REFERENCES Departamentos (idDepartamento) on delete cascade on update cascade 
 );
@@ -80,3 +81,53 @@ select nombreEmpleado,idEmpleado,idDepartamentoFK from Empleados where idDeparta
 /* 10. El mejor pagado: ¿Quién es el empleado con el salario más alto?*/
 select nombreEmpleado,min(salarioEmpleado) from Empleados where salarioEmpleado = (select min(salarioEmpleado) from Empleados);
 select * from Empleados;
+
+
+
+/*
+Sintaxis:  
+select  campoTabla1 from   Tabla1 
+inner join  Tabla2  on tabla1.campoTabla1 = tabla2.campoTabla2;
+
+*/
+
+/*EJERCICIOS 
+1. Averiguar el cargo de cada empleado*/
+select nombreEmpleado, nombreCargo from Empleados e
+join Cargo_Empleados c on e.idCargoFK = c.idCargo; 
+
+/*2. Averiguar el departamento de cada empleado*/
+select nombreEmpleado,nombreDepartamento from Empleados 
+join Departamentos on Empleados.idDepartamentoFK = Departamentos.idDepartamento;
+
+/*
+alter table  Tabla1 set (tablanueva) (tipovalor) (-- nulo o no nulo)
+*/
+select * from Empleados;
+
+alter table Empleados ADD COLUMN correoEmpleados varchar(255) not null;
+
+
+UPDATE Empleados SET correoEmpleados = "perrito2@gmail.com" where idEmpleado = 1;
+
+
+
+/*
+Sintaxis ALTER TABLE
+alter table  Tabla1 set (tablanueva) (tipovalor) (-- nulo o no nulo)
+*/
+
+
+
+/*
+Sintaxis UPDATE
+UPDATE tabla1  set campoParaHacerUPDATE  =  valor  where   condicion
+*/
+
+
+
+
+
+
+
+
