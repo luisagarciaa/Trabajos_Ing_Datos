@@ -179,3 +179,32 @@ la tabla derecha aunque no cumplan condiciones (LIT TODOOO)
 				 WHERE condicion (S)
                  ORDER BY columna, ... ASC/DESC
                  LIMIT...
+VISTAS
+¿Cómo crear una vista para simplificar la consulta de empleados con sus departamentos?
+CREATE VIEW Vista_Empleados AS
+SELECT e.nombreEmpleado, d.nombreDep AS departamento, e.salarioEmpleado
+FROM empleado e
+JOIN departamento d ON e.idDepFK = d.idDep;
+
+SELECT * FROM Vista_Empleados;
+
+TRIGGERS Y PROCEDIMIENTOS 
+#Obtener la información de un usuario dado su idUsuario PROCEDIMIENTOS SON COMO CONSULTAS AUTOMATICAS 
+DELIMITER //
+
+CREATE PROCEDURE ObtenerUsuarioPorID(IN id_usuario INT)
+BEGIN
+    SELECT idUsuario, nombreUsuario, apellidoUsuario, emailUsuario
+    FROM Usuario
+    WHERE idUsuario = id_usuario;
+END //
+
+DELIMITER ;
+
+call ObtenerUsuarioPorID (1)
+
+/5. Realice una consulta que muestre la cantidad de votos obtenidos por cada candidato en las votaciones registradas/
+select pc.idpostCandidato as id_candidato, u.nombreUsuario as nombre, count(v.idVotacion) as Votos_Total , u.idUsuario as id_usuario from postulacioncandidato pc
+inner join votacion v on pc.idpostCandidato = v.idpostCandidatoFK
+inner join usuario u on pc.idUsuarioFK = u.idUsuario
+group by pc.idpostCandidato,u.nombreUsuario;
